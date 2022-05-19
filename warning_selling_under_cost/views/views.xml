@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="warning_view_order_line_form_inherit">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']" position="replace">
+                    <field
+                        name="price_status" invisible="1"
+                    />
+                    <field
+                        name="price_unit"
+                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}" decoration-warning="price_status == 'under'" 
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
