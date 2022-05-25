@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* preventing_so_based_on_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-25 04:01+0000\n"
+"PO-Revision-Date: 2022-05-25 04:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: preventing_so_based_on_payment
+#: model:ir.model,name:preventing_so_based_on_payment.model_res_partner
+msgid "Contact"
+msgstr "Kontak"
+
+#. module: preventing_so_based_on_payment
+#: model:ir.model.fields,field_description:preventing_so_based_on_payment.field_res_partner__max_unpaid
+#: model:ir.model.fields,field_description:preventing_so_based_on_payment.field_res_users__max_unpaid
+msgid "Maximum Unpaid"
+msgstr ""
+
+#. module: preventing_so_based_on_payment
+#: model:ir.model.fields,help:preventing_so_based_on_payment.field_res_partner__max_unpaid
+#: model:ir.model.fields,help:preventing_so_based_on_payment.field_res_users__max_unpaid
+msgid "Maximum unpaid invoices allowed for customers."
+msgstr "Jumlah maksimum invoice yang belum dibayarkan yang diperbolehkan kepada pelanggan."
+
+#. module: preventing_so_based_on_payment
+#: model:ir.model.fields,field_description:preventing_so_based_on_payment.field_res_partner__is_restricted
+#: model:ir.model.fields,field_description:preventing_so_based_on_payment.field_res_users__is_restricted
+msgid "Restricted"
+msgstr "Dibatasi"
+
+#. module: preventing_so_based_on_payment
+#: model:ir.model,name:preventing_so_based_on_payment.model_sale_order
+msgid "Sales Order"
+msgstr "Order Penjualan"
+
+#. module: preventing_so_based_on_payment
+#: model:ir.model.fields,field_description:preventing_so_based_on_payment.field_res_partner__count_unpaid
+#: model:ir.model.fields,field_description:preventing_so_based_on_payment.field_res_users__count_unpaid
+msgid "Total Not Paid"
+msgstr ""

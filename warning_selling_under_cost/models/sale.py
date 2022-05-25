@@ -15,6 +15,7 @@ class SaleOrderLine(models.Model):
 				'value':{},
 				'warning':{
 					'title':'Warning',
+					# 'message':'Product: "'+self.product_id.name+'" is sold with price below the cost. Please change price if needed!'
 					'message':'Produk "'+self.product_id.name+'" dijual di bawah modal. Silakan perbaiki harga jual jika diperlukan!'
 				}
 			}
