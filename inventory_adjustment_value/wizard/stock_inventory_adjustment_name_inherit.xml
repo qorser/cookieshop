@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_inventory_adjustment_name_form_view_inherit" model="ir.ui.view">
+            <field name="name">stock.inventory.adjustment.name.form.view</field>
+            <field name="model">stock.inventory.adjustment.name</field>
+            <field name="mode">extension</field>
+            <field name="inherit_id" ref="stock.stock_inventory_adjustment_name_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/div/group/field[@name='inventory_adjustment_name']" position="after" t-inherit-mode="extension">
+                    <field name="responsible" string="Responsible"/>     
+                </xpath>                   
+            </field>
+        </record>
+    </data>
+</odoo>

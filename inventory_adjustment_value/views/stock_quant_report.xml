@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_quant_report_tree" model="ir.ui.view">
+            <field name="name">stock.quant.report.tree</field>
+            <field name="model">stock.quant.report</field>
+            <field name="arch" type="xml">
+                <tree string="Inventory Adjustment Report" create="0">
+                    <field name="name"/>
+                    <field name="total_cost_adjusted"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_report_form" model="ir.ui.view">
+            <field name="name">stock.quant.report.form</field>
+            <field name="model">stock.quant.report</field>
+            <field name="arch" type="xml">
+                <form string="Inventory Adjustment" create="0">
+                    <!-- <sheet>
+                        <field name="name"/>
+                        <field name="product_adjusted"/>
+                    </sheet> -->
+                    <div class="oe_button_box" name="button_box"/>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" class="oe_stat_button" icon="fa-pencil-square-o" name="action_view_inventory_adjustments"
+                        context="{'default_partner_id': active_id}">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <!-- <field name="currency_id" invisible="1"/> -->
+                                        <field name="product_adjusted"/>
+                                    </span>
+                                    <span class="o_stat_text">Adjusted</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group name="adjustment_info">
+                            <field name="date" />
+                            <field name="responsible" />
+                            <label for="total_cost_adjusted"/>
+                            <div class="o_row">
+                                <span class="oe_read_only">Rp</span>
+                                <field name="total_cost_adjusted"/>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_quant_report_action" model="ir.actions.act_window">
+            <field name="name">Inventory Adjustment Report</field>
+            <field name="res_model">stock.quant.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_stock_quant_report_tree"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There's no inventory adjustment yet
+                </p><p>
+                    This menu gives you the full traceability of inventory adjustment.
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+            name="Inventory Adjustment Report" action="stock_quant_report_action"
+            id="stock_quant_report_menu"
+            parent="stock.menu_warehouse_report" sequence="160"/>
+    </data>
+</odoo>
