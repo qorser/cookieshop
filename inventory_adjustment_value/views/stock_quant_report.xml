@@ -5,7 +5,7 @@
             <field name="name">stock.quant.report.tree</field>
             <field name="model">stock.quant.report</field>
             <field name="arch" type="xml">
-                <tree string="Inventory Adjustment Report" create="0">
+                <tree string="Inventory Adjustment Report" create="0" delete="0">
                     <field name="name"/>
                     <field name="total_cost_adjusted"/>
                 </tree>
