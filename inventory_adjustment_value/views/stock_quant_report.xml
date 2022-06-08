@@ -46,7 +46,7 @@
                             <label for="total_cost_adjusted"/>
                             <div class="o_row">
                                 <span class="oe_read_only">Rp</span>
-                                <field name="total_cost_adjusted"/>
+                                <field name="total_cost_adjusted" readonly="1"/>
                             </div>
                         </group>
                     </sheet>
