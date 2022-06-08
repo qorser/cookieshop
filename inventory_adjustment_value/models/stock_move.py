@@ -11,7 +11,7 @@ class StockMove(models.Model):
     total_cost = fields.Char(String="Total Cost", compute="_compute_total_cost")
 
     diference = fields.Char(String="Diference")
-    responsible = fields.Many2one('res.partner', 'Responsible')
+    user_id = fields.Many2one('res.users', string='Responsible')
 
     @api.depends('diference','product_id')
     def _compute_total_cost(self):
