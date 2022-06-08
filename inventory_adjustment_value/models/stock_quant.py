@@ -7,8 +7,6 @@ from odoo.tools.float_utils import float_compare, float_is_zero
 class StockQuant(models.Model):
 	_inherit = 'stock.quant'
 
-	responsible = fields.Many2one('res.partner', 'Responsible')
-
 	def _get_inventory_move_values(self, qty, location_id, location_dest_id, out=False):
 		self.ensure_one()
 		if fields.Float.is_zero(qty, 0, precision_rounding=self.product_uom_id.rounding):
@@ -18,7 +16,7 @@ class StockQuant(models.Model):
 		print(self.env.context)
 		return {
 			'name': self.env.context.get('inventory_name') or name,
-			'responsible': (self.env.context.get('responsible')).id,
+			'user_id': (self.env.context.get('user_id')).id,
 			'product_id': self.product_id.id,
 			'product_uom': self.product_uom_id.id,
 			'product_uom_qty': qty,
@@ -61,7 +59,8 @@ class StockQuant(models.Model):
 				                                     quant.product_id.with_company(quant.company_id).property_stock_inventory,
 			                                         out=True))
 
-
+		print('HAHAHHA')
+		print(move_vals)
 		moves = self.env['stock.move'].with_context(inventory_mode=False).create(move_vals)		
 		moves._action_done()
 
@@ -78,7 +77,7 @@ class StockQuant(models.Model):
 		report = self.env['stock.quant.report'].create({
 			'name' : moves[0]['reference'],
 			'date' : moves[0]['date'],
-			'responsible' : move_vals[0]['responsible'],
+			'user_id' : move_vals[0]['user_id'],
 			'product_adjusted' : len(moves),
 			'total_cost_adjusted' : total_cost
 			})

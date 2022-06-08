@@ -15,7 +15,7 @@ class StockQuantReport(models.Model):
 
 	total_cost_adjusted = fields.Char(String="Total Cost Adjusted", currency_field="currency_id",)
 	date = fields.Datetime('Date', default=fields.Datetime.now, required=True)
-	responsible = fields.Many2one('res.partner', 'Responsible')
+	user_id = fields.Many2one('res.users', string='Responsible')
 
 	def action_view_inventory_adjustments(self):
 		self.ensure_one()
