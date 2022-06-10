@@ -104,3 +104,12 @@ class StockPickingInherit(models.Model):
                 if picking_id:
                     picking_id.sudo().action_confirm()
                     picking_id.sudo().action_assign()
+
+                    #TAMBAHAN QORSER (ELSA) UNTUK AUTO VALIDATION
+                    for picking_id_line in picking_id.move_ids_without_package:
+                        picking_id_line.write({
+                            'quantity_done' : picking_id_line.product_uom_qty
+                            })
+
+                    picking_id.sudo().button_validate()
+
