@@ -8,14 +8,18 @@
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="reward_line_available" invisible="1" />
             </xpath>
+            <!-- ALL ABOUT MEMBER IS ADDITION FROM QORSER -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="member" invisible="1" />
+            </xpath>
             <xpath expr="//field[@name='order_line']//tree//field[@name='tax_id']" position="after">
                 <field name="total_spent_point" attrs="{'column_invisible': [('parent.reward_line_available', '=', False)]}" />
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="button_reward" type="object" string="Get Rewards" icon="fa-star" class="btn btn-primary" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}">
+                <button name="button_reward" type="object" string="Get Rewards" icon="fa-star" class="btn btn-primary" attrs="{'invisible': ['|',('state', 'in', ['sale', 'done', 'cancel']),('member', '=', False)]}">
                 </button>
                 <field name="amount_total" invisible="1"/>
-                <button name="action_redeem_points" type="object" string="Redeem Points" icon="fa-star" class="btn btn-primary" attrs="{'invisible': ['|', ('amount_total', '&lt;=', 0.00), ('state', 'in', ['sale', 'done', 'cancel'])]}">
+                <button name="action_redeem_points" type="object" string="Redeem Points" icon="fa-star" class="btn btn-primary" attrs="{'invisible': ['|', ('amount_total', '&lt;=', 0.00), ('state', 'in', ['sale', 'done', 'cancel']),('member', '=', False)]}">
                 </button>
             </xpath>
             <xpath expr="//group[@name='sale_total']//field[last()]" position="after">
