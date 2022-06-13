@@ -17,6 +17,8 @@ class SaleOrder(models.Model):
     temp_points_spent = fields.Float(digits='Sale Loyalty')
     temp_points_total = fields.Float(digits='Sale Loyalty')
     reward_line_available = fields.Boolean(compute='compute_reward_line_available')
+    # ALL ABOUT MEMBER IS ADDITION FROM QORSER
+    member = fields.Boolean(string='Member', related='partner_id.free_member')
 
     @api.depends('order_line.reward_line')
     def compute_reward_line_available(self):
@@ -91,7 +93,8 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         for order in self:
-            if order.partner_id:
+            #TAMBAHAN: HARUS MEMBER
+            if order.partner_id.free_member == True:
                 PointsHistory = self.env['sale.loyalty.points.history']
                 if order.points_won:
                     earn_history_obj = PointsHistory.search([('sale_order_id', '=', order.id), ('point_type', '=', 'earn')])
