@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<templates id="pos_service_charge_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+	<t t-name="ServiceChargeButton" owl="1">
+		<span class="control-button service-charge odoo-theme-color">
+			<i class="fa fa-credit-card"></i>
+			Service Charge
+		</span>
+	</t>
+
+	<!-- OrderSummary -->
+	<t t-name="OrderSummary" t-inherit="point_of_sale.OrderSummary" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('total')]" position="replace">
+			<t t-if="env.pos.config.service_charge_type">
+				<div class='entry total'>
+					<div class="subtotal" style="font-size: 20px;">
+						Subtotal:  <span><t t-esc="env.pos.format_currency(subtotal)"/></span>
+					</div>
+					<div class="subentry" style="padding-top: 5px; padding-bottom: 5px; font-weight: bold; text-align: right;">
+						Taxes: <span><t t-esc="env.pos.format_currency(taxes)"/></span>
+					</div>
+					<div class="service" style="border-bottom: solid 2px; border-color: #777; padding-bottom: 5px; font-weight: bold; font-size: 16px;">
+						Service Charge:<span><t t-esc="env.pos.format_currency(service_charges)"/></span>
+					</div>
+					<div class="label" style="padding-top: 5px;">
+						Total: <span><t t-esc="env.pos.format_currency(total)"/></span>
+					</div>
+				</div>
+			</t>
+			<t t-else="">
+				<div class="entry total">
+					<span class="badge">Total: </span>
+					<span class="value">
+						<t t-esc="props.total" />
+					</span>
+					<div t-if="props.tax" class="subentry">
+						Taxes:
+						<span class="value">
+							<t t-esc="props.tax" />
+						</span>
+					</div>
+				</div>
+			</t>
+		</xpath>
+	</t>
+		
+	
+	<!-- PaymentScreen-Paymentlines -->
+	<t t-name="PaymentScreen-Paymentlines" t-inherit="point_of_sale.PaymentScreenStatus" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('total')]" position="replace">
+			<div class='total'>
+				<t t-esc="env.pos.format_currency(total)"/>
+			</div>
+		</xpath>
+		<xpath expr="//div[hasclass('payment-status-total-due')]" position="replace">
+			 <div class="payment-status-total-due">
+				<span class="label">Total Due</span>
+				<span>
+					<t t-esc="env.pos.format_currency(total)"/>
+				</span>
+			</div>
+		</xpath>
+	</t>
+
+
+	<!-- Add Service Charge in PosTicket -->
+	<t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('pos-receipt-amount')]" position="replace">
+			<div>
+				Service Charge
+				<span class="pos-receipt-right-align" t-esc="env.pos.format_currency(props.order.get_service_charge())" />
+			</div>
+			<div class="pos-receipt-right-align">--------</div>
+			<br/>
+			<div class="pos-receipt-amount">
+				TOTAL
+				<span class="pos-receipt-right-align" t-esc="env.pos.format_currency(props.order.get_service_charge() + props.order.get_total_with_tax())" />
+			</div>
+		</xpath>
+	</t> 	
+</templates>
+
+
