@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_inherit_service_charge" model="ir.ui.view">
+        <field name="name">view.product.inherit.service.charge</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <div>
+                    <field name="is_service_charge" invisible="1"/>
+                    <span invisible="1">Use for service charge</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_inherit_service_charge" model="ir.ui.view">
+        <field name="name">view.pos.order.inherit.service.charge</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_tax']" position="after">
+                <field name="service_charge" force_save="1" widget="monetary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add Custom Fields in POS Config -->
+    <record id="inherit_view_pos_service_charge_config_form" model="ir.ui.view">
+        <field name="name">inherit_pos_service_charge_config</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[3]" position="after">
+                <br/>
+                <h2>Service Charge Configuration in POS</h2>
+                <div class="row mt16 o_settings_container" id="session_config">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="service_charge_type" string="Service Charge "/>
+                            <div class="text-muted">
+                                Add service charge to POS orders.
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="service_charge_type"/>
+                            </div>
+
+                            <div class="content-group mt16">
+                                <group>
+                                    <field name="product_id"
+                                           attrs="{'invisible': [('service_charge_type' ,'=', False)],'required': [('service_charge_type', '!=', False)]}"/>
+                                </group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
