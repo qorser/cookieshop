@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_create__po_from__po_s_create__po_from__po_s,create__po_from__po_s.create__po_from__po_s,model_create__po_from__po_s_create__po_from__po_s,base.group_user,1,1,1,1
