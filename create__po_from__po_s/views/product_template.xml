@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='available_in_pos']" position="after">
+                <field name="create_PO_from_PoS" />
+            </xpath>
+        </field>
+    </record>
+
+  </data>
+</odoo>
