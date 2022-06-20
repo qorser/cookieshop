@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='origin']" position="after">
-                <field name="PO_origin" string="POS Order Reference" options="{'no_edit': True}" />
+                <field name="POS_origin" string="POS Order Reference" options="{'no_edit': True}" />
             </xpath>
         </field>
     </record>
