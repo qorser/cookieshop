@@ -28,6 +28,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/product_template.xml',
+        'views/purchase_order.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
