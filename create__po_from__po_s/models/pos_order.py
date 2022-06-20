@@ -13,6 +13,7 @@ class PosOrder(models.Model):
         for order in orders:
             partners=[]
             lines = order['data']['lines']
+            receipt_number = order['data']['name']
             for line in lines:
                 product = self.env['product.product'].search([('id', '=', line[2]['product_id'])], limit=1)
                 create_PO =  product.create_PO_from_PoS
@@ -32,7 +33,7 @@ class PosOrder(models.Model):
                                         {'product_id' : line[2]['product_id'],  
                                         'product_qty' : line[2]['qty'],
                                         'price_unit' : line[2]['price_unit'],
-                                        'taxes_id' : line[2]['tax_ids']
+                                        # 'taxes_id' : line[2]['tax_ids']
                                         }))
                                     po_id.write(
                                        {'order_line' : order_line})
@@ -43,12 +44,13 @@ class PosOrder(models.Model):
                                     {'product_id' : line[2]['product_id'],  
                                     'product_qty' : line[2]['qty'],
                                     'price_unit' : line[2]['price_unit'],
-                                    'taxes_id' : line[2]['tax_ids']
+                                    # 'taxes_id' : line[2]['tax_ids']
                                     })
                                 )
-                                self.env['purchase.order'].create({
+                                po_id = self.env['purchase.order'].create({
                                     'partner_id' : partner_id,
-                                    'order_line' :order_line
+                                    'order_line' :order_line,
+                                    'origin' : receipt_number
                                 })
                                 
                                 partners.append({
@@ -61,12 +63,13 @@ class PosOrder(models.Model):
                                 {'product_id' : line[2]['product_id'],  
                                 'product_qty' : line[2]['qty'],
                                 'price_unit' : line[2]['price_unit'],
-                                'taxes_id' : line[2]['tax_ids']
+                                # 'taxes_id' : line[2]['tax_ids']
                                 })
                             )
                             po_id = self.env['purchase.order'].create({
                                 'partner_id' : partner_id,
-                                'order_line' : order_line
+                                'order_line' : order_line,
+                                'origin' : receipt_number
                             })
                             
                             partners.append({
