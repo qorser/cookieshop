@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pos_isi_pulsa" inherit_id="point_of_sale.template" xml:space="preserve">
+
+    <!-- PosIsiPulsaWidget -->
+    <t t-name="PosIsiPulsaWidget" name="Pos Isi Pulsa Widget" owl="1">
+        <div class="control-button button confirm" id="pos_isi_pulsa"
+             style="background-color: #6ec89b; color: #fff; width:90%;" t-on-click="renderElement">
+            <i class="fa fa-bars"></i>
+            Isi Pulsa
+        </div>
+   	</t>
+
+    <t t-name="ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('subpads')]" position="before">
+            <br/>
+            <PosIsiPulsaWidget/>
+        </xpath>
+    </t>
+
+     <!-- PosBagPopupWidget -->
+    <t t-name="PosIsiPulsaPopupWidget" owl="1">
+        <div class="modal-dialog">
+            <div class="popup popup-confirm" style="height: auti;">
+                <p class="title" style="background-color: rgb(110,200,155); color: #fff;">Input data yang diperlukan untuk pengisian pulsa!</p>
+                <div class="body">
+                    <div class='div-container' >
+                        <form class="isi-pulsa" >
+                            <div class="input-data-top-up">
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">ID</label>
+                                    <input type="text" name="IRS_id" placeholder="Eg. IS0002"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">PIN</label>
+                                    <input type="number" name="IRS_pin" placeholder="Eg. 12345"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">User</label>
+                                    <input type="text" name="IRS_user" placeholder="Eg. ABC123"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">Password</label>
+                                    <input type="number" name="IRS_password" placeholder="Eg. 1234567890"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">Kode Produk</label>
+                                    <input type="text" name="product_code" placeholder="Eg. PLN"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">Nomor Tujuan</label>
+                                    <input type="tel" name="phone" id="phone" placeholder="Eg. 081111111111"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">ID Transaksi</label>
+                                    <input type="number" name="IRS_trx_id" placeholder="Eg. 101010101"/>
+                                </div>
+                                <div class="top-up-line">
+                                    <label class="control-label" for="phone">Jenis</label>
+                                    <input type="number" name="IRS_type" placeholder="Eg. 5 or 6"/>
+                                </div>                            
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="footer" style="background-color: rgb(110,200,155); color: #fff;position:fixed;bottom:0;">
+                    <div class="button send" style="background-color: #0075AC; color: #fff;"
+                         t-on-click="isi_pulsa" type="submit">
+                        <i class="fa fa-paper-plane" aria-hidden="true"/>
+                        Send
+                        </div>
+                    <div class="button cancel" style="background-color: #0075AC; color: #fff;"
+                         t-on-click="go_back_screen">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>
