@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="top-up-line">
                                     <label class="control-label" for="phone">PIN</label>
-                                    <input type="number" name="IRS_pin" placeholder="Eg. 12345"/>
+                                    <input type="text" name="IRS_pin" placeholder="Eg. 12345"/>
                                 </div>
                                 <div class="top-up-line">
                                     <label class="control-label" for="phone">User</label>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="top-up-line">
                                     <label class="control-label" for="phone">Password</label>
-                                    <input type="number" name="IRS_password" placeholder="Eg. 1234567890"/>
+                                    <input type="text" name="IRS_password" placeholder="Eg. 1234567890"/>
                                 </div>
                                 <div class="top-up-line">
                                     <label class="control-label" for="phone">Kode Produk</label>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="top-up-line">
                                     <label class="control-label" for="phone">ID Transaksi</label>
-                                    <input type="number" name="IRS_trx_id" placeholder="Eg. 101010101"/>
+                                    <input type="text" name="IRS_trx_id" placeholder="Eg. 101010101"/>
                                 </div>
                                 <div class="top-up-line">
                                     <label class="control-label" for="phone">Jenis</label>
