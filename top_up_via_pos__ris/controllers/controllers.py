@@ -22,12 +22,12 @@ class TopUpViaPosRis(http.Controller):
 #         })
 
     @http.route('/isipulsa', type='json', auth='public')
-    def isipulsa(self, phone):
+    def isipulsa(self, phone, id, pin, user, password):
         print('HALO INI CONTROLLER')      
         print(phone) 
         payload={}
         headers = {}
-        url = "http://103.119.55.59:8080/api/h2h?id=CK0006&pin=503503&user=A13F8A&pass=F711D3&kodeproduk=T1&tujuan=08997927000&counter=1&idtrx=240622-1"
+        url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="str(user)"&pass="+str(password)"&kodeproduk=T1&tujuan=08997927000&counter=1&idtrx=240622-1"
         response = requests.request("GET", url, headers=headers, data=payload)
 
         print(response.text)

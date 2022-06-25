@@ -35,7 +35,12 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             console.log(IRS_type_input)
 
             ajax.jsonRpc('/isipulsa', 'call', {
-                'phone': phone_input
+                'phone': phone_input, 
+                'id' : IRS_id_input,
+                'pin' : IRS_pin_input,
+                'user' : IRS_user_input,
+                'password' : IRS_password_input
+
             })
             .then(function (result) { 
                 // console.log(result)
