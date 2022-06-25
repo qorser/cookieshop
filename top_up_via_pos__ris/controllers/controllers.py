@@ -27,7 +27,7 @@ class TopUpViaPosRis(http.Controller):
         print(phone) 
         payload={}
         headers = {}
-        url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="+str(user)"&pass="+str(password)"&kodeproduk=T1&tujuan=08997927000&counter=1&idtrx=240622-1"
+        url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk=T1&tujuan=08997927000&counter=1&idtrx=240622-1"
         response = requests.request("GET", url, headers=headers, data=payload)
 
         print(response.text)
