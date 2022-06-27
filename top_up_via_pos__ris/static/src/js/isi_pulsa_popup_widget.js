@@ -41,7 +41,8 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                 'user' : IRS_user_input,
                 'password' : IRS_password_input,
                 'kode' : product_code_input,
-                'trx_id': IRS_trx_id_input
+                'trx_id': IRS_trx_id_input, 
+                'trx_type' : IRS_type_input
 
             })
             .then(function (result) { 
