@@ -27,23 +27,23 @@
                         <form class="isi-pulsa" >
                             <div class="input-data-top-up">
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">ID</label>
+                                    <label class="control-label" for="IRS_id">ID</label>
                                     <input type="text" name="IRS_id" placeholder="Eg. IS0002"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">PIN</label>
+                                    <label class="control-label" for="IRS_pin">PIN</label>
                                     <input type="text" name="IRS_pin" placeholder="Eg. 12345"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">User</label>
+                                    <label class="control-label" for="IRS_user">User</label>
                                     <input type="text" name="IRS_user" placeholder="Eg. ABC123"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">Password</label>
+                                    <label class="control-label" for="IRS_password">Password</label>
                                     <input type="text" name="IRS_password" placeholder="Eg. 1234567890"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">Kode Produk</label>
+                                    <label class="control-label" for="product_code">Kode Produk</label>
                                     <input type="text" name="product_code" placeholder="Eg. PLN"/>
                                 </div>
                                 <div class="top-up-line">
@@ -51,11 +51,11 @@
                                     <input type="tel" name="phone" id="phone" placeholder="Eg. 081111111111"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">ID Transaksi</label>
+                                    <label class="control-label" for="IRS_trx_id">ID Transaksi</label>
                                     <input type="text" name="IRS_trx_id" placeholder="Eg. 101010101"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">Jenis</label>
+                                    <label class="control-label" for="IRS_type">Jenis</label>
                                     <input type="number" name="IRS_type" placeholder="Eg. 5 or 6"/>
                                 </div>                            
                             </div>
