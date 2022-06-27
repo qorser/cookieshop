@@ -20,7 +20,7 @@
      <!-- PosBagPopupWidget -->
     <t t-name="PosIsiPulsaPopupWidget" owl="1">
         <div class="modal-dialog">
-            <div class="popup popup-confirm" style="height: auti;">
+            <div class="popup popup-confirm" style="height: 600px;">
                 <p class="title" style="background-color: rgb(110,200,155); color: #fff;">Input data yang diperlukan untuk pengisian pulsa!</p>
                 <div class="body">
                     <div class='div-container' >
