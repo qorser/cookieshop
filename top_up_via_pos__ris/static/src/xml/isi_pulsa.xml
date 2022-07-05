@@ -35,14 +35,6 @@
                                     <input type="text" name="IRS_pin" placeholder="Eg. 12345"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="IRS_user">User</label>
-                                    <input type="text" name="IRS_user" placeholder="Eg. ABC123"/>
-                                </div>
-                                <div class="top-up-line">
-                                    <label class="control-label" for="IRS_password">Password</label>
-                                    <input type="text" name="IRS_password" placeholder="Eg. 1234567890"/>
-                                </div>
-                                <div class="top-up-line">
                                     <label class="control-label" for="product_code">Kode Produk</label>
                                     <input type="text" name="product_code" placeholder="Eg. PLN"/>
                                 </div>

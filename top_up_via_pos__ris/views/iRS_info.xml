@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="irs_info_view_form" model="ir.ui.view">
+        <field name="name">irs.info.form</field>
+        <field name="model">irs.info</field>
+        <field name="arch" type="xml">
+            <form string="RIS Account Information">
+            	<sheet>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="iRS ID" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <field name="irs_username" string="iRS Username"/>
+                        <field name="irs_password" string="iRS Password"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_irs_info_tree" model="ir.ui.view">
+        <field name="name">irs.info.tree</field>
+        <field name="model">irs.info</field>
+        <field name="arch" type="xml">
+            <tree string="RIS Account Information">
+                <field name="name" string="iRS ID"/>
+                <field name="irs_username" string="iRS Username"/>
+                <field name="irs_password" string="iRS Password"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_irs_info_form" model="ir.actions.act_window">
+        <field name="name">iRS Account Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">irs.info</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create an iRS Account.
+            </p>
+            <p>
+                iRS account consist of id, username, and password to send when trigger top up to iRS server.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="main_menu_irs_info"
+        name='iRS'
+        parent="point_of_sale.menu_point_config_product"
+        sequence="50" />
+    <menuitem
+        id="menu_irs_info"
+        name='iRS Account Information'
+        action="action_irs_info_form"
+        parent="main_menu_irs_info"
+        sequence="1" />
+</odoo>
