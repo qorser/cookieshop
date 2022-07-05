@@ -24,9 +24,11 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/iRS_info.xml',
+        'views/iRS_product_code.xml'
     ],
     'assets': {
         'point_of_sale.assets': [

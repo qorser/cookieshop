@@ -18,35 +18,21 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
         isi_pulsa() {
             var IRS_id_input = document.querySelector('[name="IRS_id"]').value
             var IRS_pin_input = document.querySelector('[name="IRS_pin"]').value
-            var IRS_user_input = document.querySelector('[name="IRS_user"]').value
-            var IRS_password_input = document.querySelector('[name="IRS_password"]').value
             var product_code_input = document.querySelector('[name="product_code"]').value
             var phone_input = document.querySelector('[name="phone"]').value
             var IRS_trx_id_input = document.querySelector('[name="IRS_trx_id"]').value
             var IRS_type_input = document.querySelector('[name="IRS_type"]').value
 
-            console.log(IRS_id_input)
-            console.log(IRS_pin_input)
-            console.log(IRS_user_input)
-            console.log(IRS_password_input)
-            console.log(product_code_input)
-            console.log(phone_input)
-            console.log(IRS_trx_id_input)
-            console.log(IRS_type_input)
-
             ajax.jsonRpc('/isipulsa', 'call', {
                 'phone': phone_input, 
                 'id' : IRS_id_input,
                 'pin' : IRS_pin_input,
-                'user' : IRS_user_input,
-                'password' : IRS_password_input,
                 'kode' : product_code_input,
                 'trx_id': IRS_trx_id_input, 
                 'trx_type' : IRS_type_input, 
 
             })
             .then(function (result) { 
-                // console.log(result)
                 setTimeout(function(){ 
                     console.log('Pengisian berhasil!')
                     alert(result)
@@ -55,10 +41,6 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                 }
             )
 
-            // setTimeout(function(){ 
-            //     console.log('Pengisian berhasil!')
-            //     alert('Pengisian pulsa berhasil!')
-            // }, 3000);
             this.showScreen('ProductScreen');
             this.trigger('close-popup');
         }
