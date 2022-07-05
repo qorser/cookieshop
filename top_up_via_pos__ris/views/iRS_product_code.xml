@@ -27,7 +27,7 @@
     </record>
 
     <record id="action_irs_product_code_form" model="ir.actions.act_window">
-        <field name="name">iRS Account Information</field>
+        <field name="name">RIS Product Code</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">irs.product.code</field>
         <field name="view_mode">tree,form</field>
