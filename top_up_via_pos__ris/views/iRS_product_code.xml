@@ -19,7 +19,7 @@
         <field name="name">irs.product.code.tree</field>
         <field name="model">irs.product.code</field>
         <field name="arch" type="xml">
-            <tree string="RIS Account Information">
+            <tree string="RIS Product Code">
                 <field name="name" string="iRS Code"/>
                 <field name="input_code" string="PoS Input Code"/>
             </tree>
