@@ -21,14 +21,15 @@ class TopUpViaPosRis(http.Controller):
 
         url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(phone)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
         response = requests.request("GET", url, headers=headers, data=payload)
+        print(url)
 
         json_data = json.loads(response.text)
 
         if json_data:
             if json_data['success'] == False:
-                return "Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])
+                return "Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+str(json_data)
             else:
-                return str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])
+                return str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+ str(json_data)
 
 
 
