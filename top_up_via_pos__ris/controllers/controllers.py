@@ -27,9 +27,9 @@ class TopUpViaPosRis(http.Controller):
 
         if json_data:
             if json_data['success'] == False:
-                return "Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+str(json_data)+str(url)
+                return "Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])
             else:
-                return str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+ str(json_data)+str(url)
+                return str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])
 
 
 
