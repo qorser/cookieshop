@@ -20,21 +20,20 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             var IRS_pin_input = document.querySelector('[name="IRS_pin"]').value
             var product_code_input = document.querySelector('[name="product_code"]').value
             var phone_input = document.querySelector('[name="phone"]').value
-            var IRS_trx_id_input = document.querySelector('[name="IRS_trx_id"]').value
             var IRS_type_input = document.querySelector('[name="IRS_type"]').value
+            var trx_id = PosComponent.env.pos.get_order().uid
 
             ajax.jsonRpc('/isipulsa', 'call', {
                 'phone': phone_input, 
                 'id' : IRS_id_input,
                 'pin' : IRS_pin_input,
                 'kode' : product_code_input,
-                'trx_id': IRS_trx_id_input, 
+                'trx_id': trx_id, 
                 'trx_type' : IRS_type_input, 
 
             })
             .then(function (result) { 
                 setTimeout(function(){ 
-                    console.log('Pengisian berhasil!')
                     alert(result)
                 }, 3000);
                

@@ -14,12 +14,6 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaWidget', function(require) {
 
         renderElement (){
             var self = this;
-            console.log('HAI')
-            // ajax.jsonRpc('/isipulsa', 'call', {'string': 'Halo semua'})
-            // .then(function (result) { 
-            //     // console.log(result)
-            //     }
-            // )
             self.showPopup('PosIsiPulsaPopupWidget', {});
 
         }

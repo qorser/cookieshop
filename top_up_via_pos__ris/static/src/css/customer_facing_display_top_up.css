@@ -1,3 +1,20 @@
-/*.top-up-line {
-	display : flex;
-}*/
+.top-up-line {
+	margin: 10px 0 10px 0;
+}
+
+.pos .popup input.top-up-input {
+	border-radius: 8px;
+	height:  60px;
+	font-size: 18px;
+	font-family: Arial;
+}
+
+.input-data-top-up {
+    margin: 40px 20px 40px 20px;
+}
+.top-up-input::placeholder{
+	color: #b7b7b7;
+}
+.popup.popup-confirm-top-up{
+	height: 550px;
+}
