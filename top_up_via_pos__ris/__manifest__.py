@@ -40,9 +40,9 @@
             '/top_up_via_pos__ris/static/src/xml/isi_pulsa.xml',
             '/top_up_via_pos__ris/static/src/xml/receipt.xml'
         ],
-        # 'web.assets_frontend': [
-        #     '/top_up_via_pos__ris/static/src/css/customer_facing_display_top_up.css',
-        # ],
+        'web.assets_frontend': [
+            '/top_up_via_pos__ris/static/src/css/customer_facing_display_top_up.css',
+        ],
     },
     # only loaded in demonstration mode
     'demo': [

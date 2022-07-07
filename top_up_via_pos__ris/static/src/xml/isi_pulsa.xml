@@ -20,35 +20,26 @@
      <!-- PosBagPopupWidget -->
     <t t-name="PosIsiPulsaPopupWidget" owl="1">
         <div class="modal-dialog">
-            <div class="popup popup-confirm" style="height: 600px;">
+            <div class="popup popup-confirm-top-up">
                 <p class="title" style="background-color: rgb(110,200,155); color: #fff;">Input data yang diperlukan untuk pengisian pulsa!</p>
                 <div class="body">
                     <div class='div-container' >
                         <form class="isi-pulsa" >
                             <div class="input-data-top-up">
                                 <div class="top-up-line">
-                                    <label class="control-label" for="IRS_id">ID</label>
-                                    <input type="text" name="IRS_id" placeholder="Eg. IS0002"/>
+                                    <input type="text" name="IRS_id" placeholder="ID iRS" class="top-up-input"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="IRS_pin">PIN</label>
-                                    <input type="text" name="IRS_pin" placeholder="Eg. 12345"/>
+                                    <input type="text" name="IRS_pin" placeholder="PIN" class="top-up-input"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="product_code">Kode Produk</label>
-                                    <input type="text" name="product_code" placeholder="Eg. PLN"/>
+                                    <input type="text" name="product_code" placeholder="Kode Produk" class="top-up-input"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="phone">Nomor Tujuan</label>
-                                    <input type="tel" name="phone" id="phone" placeholder="Eg. 081111111111"/>
+                                    <input type="tel" name="phone" id="phone" placeholder="Nomor Tujuan" class="top-up-input"/>
                                 </div>
                                 <div class="top-up-line">
-                                    <label class="control-label" for="IRS_trx_id">ID Transaksi</label>
-                                    <input type="text" name="IRS_trx_id" placeholder="Eg. 101010101"/>
-                                </div>
-                                <div class="top-up-line">
-                                    <label class="control-label" for="IRS_type">Jenis</label>
-                                    <input type="number" name="IRS_type" placeholder="Eg. 5 or 6"/>
+                                    <input type="number" name="IRS_type" placeholder="Tipe Layanan (Khusus PPOB)" class="top-up-input"/>
                                 </div>                            
                             </div>
                         </form>
