@@ -16,7 +16,7 @@
     'license': 'OPL-1',
     'author': 'Kanak Infosystems LLP.',
     'website': 'https://www.kanakinfosystems.com',
-    'depends': ['sale_management'],
+    'depends': ['sale_management','membership'],
     'data': [
         'security/sale_loyalty_security.xml',
         'security/ir.model.access.csv',
