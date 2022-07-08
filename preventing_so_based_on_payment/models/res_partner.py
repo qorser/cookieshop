@@ -41,4 +41,7 @@ class res_partner(models.Model):
 
         print(price_totals)
         #SUDAH DAPAT HASILNYA. HASILNYA: JUMLAH IMVOICE PER PAYMENT STATUS (payment_state_count), DAN JUMLAH NOMINAL PER PAYMENT STATUS (amount_total_signed).
-        self.count_unpaid=price_totals[0]['payment_state_count']
+        if price_totals:
+            self.count_unpaid=price_totals[0]['payment_state_count']
+        else:
+            self.count_unpaid=0
