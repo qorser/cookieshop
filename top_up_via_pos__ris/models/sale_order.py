@@ -11,8 +11,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
    
     def action_topup(self):
-        print("HAI SEMUAAAAA")
-        print(self.name)
         view = self.env.ref('top_up_via_pos__ris.isi_pulsa_wizard')
         view_id = view and view.id or False
         context = dict(self._context or {})
@@ -32,3 +30,17 @@ class SaleOrder(models.Model):
         so_id = self.env.context.get('active_id')
         name = self.search([('id', '=', so_id)], limit=1).name
         return name
+
+    def add_product_pulsa(self, sn, code):
+        so_id = self.env.context.get('active_id')
+        produk_pulsa = self.env['product.product'].search([('default_code', '=', code)],limit=1).id
+        lines_vals = [
+            (0, 0, {
+                'product_id': produk_pulsa,
+                'product_uom_qty': 1,
+                'name': sn
+            })]
+
+        self.search([('id', '=', so_id)], limit=1).write({
+            'order_line': lines_vals,
+        })
