@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="isi_pulsa_wizard" model="ir.ui.view">
+        <field name="name">isi.pulsa.wizard</field>
+        <field name="model">isi.pulsa.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Isi Pulsa / Top Up PPOB" class="modal-topup" style="width: 2000px">
+                <div style="display:flex">
+                    <label for="name" style="margin: 0 50px 0 0; width: 100px"/>
+                    <field name="name" style="display: flex;
+    width: 200px;"/>
+                </div>
+                <div style="display:flex">
+                    <label for="irs_pin" style="margin: 0 50px 0 0; width: 100px"/>
+                    <field name="irs_pin" style="display: flex;
+    width: 200px;"/>
+                </div>
+                <div style="display:flex">
+                    <label for="product_code" style="margin: 0 50px 0 0; width: 100px"/>
+                    <field name="product_code" style="display: flex;
+    width: 200px;"/>
+                </div>
+                <div style="display:flex">
+                    <label for="phone_number" style="margin: 0 50px 0 0; width: 100px"/>
+                    <field name="phone_number" style="display: flex;
+    width: 200px;"/>
+                </div>
+                <div style="display:flex">
+                    <label for="trx_type" style="margin: 0 50px 0 0; width: 100px"/>
+                    <field name="trx_type" style="display: flex;
+    width: 200px;" />
+                </div>
+               
+                <footer>
+                    <button string='Submit' name="isi_pulsa" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

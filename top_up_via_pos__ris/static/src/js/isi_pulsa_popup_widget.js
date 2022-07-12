@@ -4,6 +4,7 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
     const Popup = require('point_of_sale.ConfirmPopup');
     const Registries = require('point_of_sale.Registries');
     const PosComponent = require('point_of_sale.PosComponent');
+    const OrderReceipt = require('point_of_sale.OrderReceipt')
     const ajax = require('web.ajax');
 
     class PosIsiPulsaPopupWidget extends Popup {
@@ -35,6 +36,11 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             .then(function (result) { 
                 setTimeout(function(){ 
                     alert(result)
+                    // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
+                    PosComponent.env.pos.set({
+                        'phone': phone_input,
+                        'sn':  '123457',
+                    });
                 }, 3000);
                
                 }

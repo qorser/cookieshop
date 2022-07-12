@@ -28,7 +28,9 @@
         'views/views.xml',
         'views/templates.xml',
         'views/iRS_info.xml',
-        'views/iRS_product_code.xml'
+        'views/iRS_product_code.xml',
+        'views/sale_views.xml',
+        'wizards/views/isi_pulsa_wizard.xml',
     ],
     'assets': {
         'point_of_sale.assets': [

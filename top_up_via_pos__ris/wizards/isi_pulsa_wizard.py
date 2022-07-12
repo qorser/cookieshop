@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+# Part of Softhealer Technologies.
+from odoo import fields, models
+import json
+from odoo.exceptions import UserError, ValidationError
+import requests
+
+class IsiPulsaWizard(models.TransientModel):
+    _name = "isi.pulsa.wizard"
+    _description = "Isi pulsa denngan menginput data yang diperlukan di bawah ini!"
+
+    name = fields.Char(string="ID IRS")
+    irs_pin = fields.Char(string="PIN IRS")
+    irs_username = fields.Char(string="Username IRS")
+    irs_password = fields.Char(string="Password IRS")
+    product_code = fields.Char(string="Kode Produk")
+    phone_number = fields.Char(string="Nomor Tujuan")
+    trx_type = fields.Char(string="Tipe Transaksi (Khusus PPOB)")
+
+    def isi_pulsa(self):
+        trx_id = self.env['sale.order'].get_active_name()
+
+        payload={}
+        headers = {}
+        user = self.env['irs.info'].search([('name', '=', self.name)], limit=1).irs_username
+        
+        password = self.env['irs.info'].search([('name', '=', self.name)], limit=1).irs_password
+        print(password)
+        if password == False:
+            raise ValidationError('ID IRS tidak dapat ditemukan di database odoo. Silakan cek apakah penulisan ID sudah benar.')
+        
+        product_code = self.env['irs.product.code'].search([('input_code', '=', self.product_code)], limit=1).name
+        if product_code == False:
+            raise ValidationError('Tidak ada kode produk tersedia di database. Silakan cek apakah penulisan kode produk sudah benar')
+
+        url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(self.trx_type)
+        response = requests.request("GET", url, headers=headers, data=payload)
+        print(url)
+
+        json_data = json.loads(response.text)
+        print(json_data)
+
+        if json_data:
+            if json_data['success'] == False:
+                raise ValidationError( "Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid']))
+            else:
+                raise ValidationError( str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid']))
