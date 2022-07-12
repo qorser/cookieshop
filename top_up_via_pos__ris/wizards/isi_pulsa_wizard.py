@@ -25,7 +25,6 @@ class IsiPulsaWizard(models.TransientModel):
         user = self.env['irs.info'].search([('name', '=', self.name)], limit=1).irs_username
         
         password = self.env['irs.info'].search([('name', '=', self.name)], limit=1).irs_password
-        print(password)
         if password == False:
             raise ValidationError('ID IRS tidak dapat ditemukan di database odoo. Silakan cek apakah penulisan ID sudah benar.')
         
@@ -42,6 +41,22 @@ class IsiPulsaWizard(models.TransientModel):
 
         if json_data:
             if json_data['success'] == False:
-                raise ValidationError( "Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid']))
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'type': 'warning',
+                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])),
+                        'sticky' : True
+                    }
+                }
             else:
-                raise ValidationError( str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid']))
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'type': 'warning',
+                        'message': (str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])),
+                        'sticky' : True
+                    }
+                }
