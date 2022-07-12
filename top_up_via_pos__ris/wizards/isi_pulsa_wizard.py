@@ -28,16 +28,18 @@ class IsiPulsaWizard(models.TransientModel):
         if password == False:
             raise ValidationError('ID IRS tidak dapat ditemukan di database odoo. Silakan cek apakah penulisan ID sudah benar.')
         
+        produk_pulsa = self.env['product.product'].search([('default_code', '=', self.product_code)],limit=1).id
+        if produk_pulsa == False:
+            raise ValidationError('Tidak ada kode produk tersedia di database. Buat produk dengan kode internal: '+str(self.product_code))
+        
         product_code = self.env['irs.product.code'].search([('input_code', '=', self.product_code)], limit=1).name
         if product_code == False:
             raise ValidationError('Tidak ada kode produk tersedia di database. Silakan cek apakah penulisan kode produk sudah benar')
 
         url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(self.trx_type)
         response = requests.request("GET", url, headers=headers, data=payload)
-        print(url)
 
         json_data = json.loads(response.text)
-        print(json_data)
 
         if json_data:
             if json_data['success'] == False:
@@ -51,6 +53,9 @@ class IsiPulsaWizard(models.TransientModel):
                     }
                 }
             else:
+                sn = json_data['sn']
+                code = self.product_code
+                self.env['sale.order'].add_product_pulsa(sn, code)
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
