@@ -55,7 +55,7 @@ class IsiPulsaWizard(models.TransientModel):
                     'tag': 'display_notification',
                     'params': {
                         'type': 'warning',
-                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+"\n"+str(json_data)),
+                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+"\n"+str(json_data)+"\n"+str(url)),
                         'sticky' : True
                     }
                 }
