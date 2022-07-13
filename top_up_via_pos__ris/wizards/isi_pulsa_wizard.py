@@ -41,10 +41,12 @@ class IsiPulsaWizard(models.TransientModel):
             raise ValidationError('Tidak ada kode produk tersedia di database. Silakan cek apakah penulisan kode produk sudah benar')
 
         url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
-        
+        print(url)
         response = requests.request("GET", url, headers=headers, data=payload)
 
         json_data = json.loads(response.text)
+
+        print(json_data)
 
         if json_data:
             if json_data['success'] == False:
@@ -53,7 +55,7 @@ class IsiPulsaWizard(models.TransientModel):
                     'tag': 'display_notification',
                     'params': {
                         'type': 'warning',
-                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])),
+                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+"\n"+str(json_data)),
                         'sticky' : True
                     }
                 }
