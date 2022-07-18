@@ -18,10 +18,14 @@ class TopUpViaPosRis(http.Controller):
         product_code = http.request.env['irs.product.code'].search([('input_code', '=', kode)], limit=1).name
         if product_code == False:
             return 'Tidak ada kode produk tersedia di database. Silakan cek apakah penulisan kode produk sudah benar'
+        else:
+            produk_pulsa = http.request.env['product.product'].search([('default_code', '=', kode)],limit=1).id
+            if produk_pulsa == False:
+                return 'Tidak ada kode produk tersedia di database. Buat produk dengan kode internal: '+str(kode)
+        
 
         url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(phone)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
         response = requests.request("GET", url, headers=headers, data=payload)
-        print(url)
 
         json_data = json.loads(response.text)
 

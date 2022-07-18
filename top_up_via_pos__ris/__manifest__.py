@@ -36,6 +36,7 @@
         'point_of_sale.assets': [
             '/top_up_via_pos__ris/static/src/js/isi_pulsa.js',
             '/top_up_via_pos__ris/static/src/js/isi_pulsa_popup_widget.js',
+            '/top_up_via_pos__ris/static/src/js/serial_number.js',
             '/top_up_via_pos__ris/static/src/css/customer_facing_display_top_up.css',
         ],
         'web.assets_qweb': [
