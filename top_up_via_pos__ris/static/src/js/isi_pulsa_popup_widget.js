@@ -41,10 +41,10 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             .then(function (result) { 
                 setTimeout(function(){ 
                     var res = JSON.stringify(result)
-                    alert(res)
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
                     if (res_json.success === true){
+                        alert(res_json)
                     // if (res_json.success === false){
                         // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
                         order.set_serial_number(res['sn'], res['tujuan'])
@@ -65,6 +65,9 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                             const added_product = order.add_product(product);
                             NumberBuffer.reset();
                         });
+                    }
+                    else{
+                        alert(res_json)
                     }
                 }, 3000);
                
