@@ -6,6 +6,8 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
     const PosComponent = require('point_of_sale.PosComponent');
     const OrderReceipt = require('point_of_sale.OrderReceipt')
     const ajax = require('web.ajax');
+    const NumberBuffer = require('point_of_sale.NumberBuffer');
+    var rpc = require('web.rpc');
 
     class PosIsiPulsaPopupWidget extends Popup {
         constructor() {
@@ -16,6 +18,7 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             this.showScreen('ProductScreen');
             this.trigger('close-popup');
         }
+
         isi_pulsa() {
             var IRS_id_input = document.querySelector('[name="IRS_id"]').value
             var IRS_pin_input = document.querySelector('[name="IRS_pin"]').value
@@ -23,6 +26,8 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             var phone_input = document.querySelector('[name="phone"]').value
             var IRS_type_input = document.querySelector('[name="IRS_type"]').value
             var trx_id = PosComponent.env.pos.get_order().uid
+
+            let order = this.env.pos.get_order()
 
             ajax.jsonRpc('/isipulsa', 'call', {
                 'phone': phone_input, 
@@ -35,12 +40,32 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             })
             .then(function (result) { 
                 setTimeout(function(){ 
-                    alert(result)
-                    // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
-                    PosComponent.env.pos.set({
-                        'phone': phone_input,
-                        'sn':  '123457',
-                    });
+                    var res = JSON.stringify(result)
+                    alert(res)
+                    //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
+                    var res_json = JSON.parse(res)
+                    if (res_json.success === true){
+                    // if (res_json.success === false){
+                        // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
+                        order.set_serial_number(res['sn'], res['tujuan'])
+                        // var sn='ABC123'
+                        // var number='088880088880'
+                        // order.set_serial_number(sn, number)
+                        
+                        //MENEMUKAN PRODUK DENGAN KODE YANG DIMASUKKAN
+                        var model = 'product.product';
+                        var domain = [['default_code', '=', product_code_input]];
+                        var fields = [];
+                        rpc.query({
+                            model: model,
+                            method: 'search_read',
+                            args: [domain, fields],
+                        }).then(function (data) {
+                            const product = PosComponent.env.pos.db.get_product_by_id(data[0].id);
+                            const added_product = order.add_product(product);
+                            NumberBuffer.reset();
+                        });
+                    }
                 }, 3000);
                
                 }
@@ -48,6 +73,7 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
 
             this.showScreen('ProductScreen');
             this.trigger('close-popup');
+
         }
     };
     PosIsiPulsaPopupWidget.template = 'PosIsiPulsaPopupWidget';

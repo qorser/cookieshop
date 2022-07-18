@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="OrderReceiptNew" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
-        <!--Extend-->
-        <xpath expr="//div[hasclass('orderlines')]" position="inside">
-            <div class="pos-receipt-left-padding pos-receipt-phone-number">
-                No HP: 08521234567890 | SN:38462997620
-            </div>
+        <xpath expr="//div[hasclass('before-footer')]" position="inside">
+            <t t-if="props.order.get_serial_number()">
+                <div class="pos-topup">
+                    <div>----------------------------------------------------</div>
+                    <br/>
+                    <div>
+                        <span style="font-weight: bold;">Pengisian Pulsa / Token PPOB </span>
+                    </div>
+                    <t t-foreach="props.order.get_serial_number()" t-as="result">
+                        <div class="topup-container">
+                            <div>
+                                <span>- Nomor Tujuan: </span> 
+                                <t t-esc="result.phone"/>
+                            </div>
+                            <div>
+                                <span>SN: </span> 
+                                <t t-esc="result.sn"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
         </xpath>
     </t>
 </templates>
