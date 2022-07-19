@@ -44,7 +44,6 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     var res = JSON.stringify(result)
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
-                    console.log(url)
                     if (res_json.success === true){
                         alert(res+"/n"+url)
                     // if (res_json.success === false){
