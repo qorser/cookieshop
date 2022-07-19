@@ -41,6 +41,7 @@ class IsiPulsaWizard(models.TransientModel):
             url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)
         else:
             trx_type = self.trx_type
+            url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
 
         # url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
         print(url)
