@@ -19,6 +19,7 @@ class IsiPulsaWizard(models.TransientModel):
 
     def isi_pulsa(self):
         trx_id = self.env['sale.order'].get_active_name()
+        trx_id = "0"+str(trx_id)
         if self.trx_type == False:
             trx_type = " "
         else:
