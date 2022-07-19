@@ -25,8 +25,7 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             var product_code_input = document.querySelector('[name="product_code"]').value
             var phone_input = document.querySelector('[name="phone"]').value
             var IRS_type_input = document.querySelector('[name="IRS_type"]').value
-            // var trx_id = PosComponent.env.pos.get_order().uid
-            var trx_id = '0S00030'
+            var trx_id = PosComponent.env.pos.get_order().uid
 
             let order = this.env.pos.get_order()
 
@@ -39,13 +38,14 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                 'trx_type' : IRS_type_input, 
 
             })
-            .then(function (result, url) { 
+            .then(function (result) { 
                 setTimeout(function(){ 
                     var res = JSON.stringify(result)
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
-                    if (res_json.success === true){
-                        alert(res+"/n"+url)
+                    // if (res_json.success === true){
+                    if (res_json.success === false){ 
+                        alert(res)
                     // if (res_json.success === false){
                         // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
                         order.set_serial_number(res_json['sn'], res_json['tujuan'])

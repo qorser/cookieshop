@@ -29,7 +29,7 @@ class TopUpViaPosRis(http.Controller):
 
         json_data = json.loads(response.text)
 
-        return json_data, url
+        return json_data
 
         # if json_data:
         #     if json_data['success'] == False:
