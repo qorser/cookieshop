@@ -11,8 +11,9 @@ class TopUpViaPosRis(http.Controller):
     def isipulsa(self, phone, id, pin, kode, trx_id, trx_type):
         payload={}
         headers = {}
-        user = http.request.env['irs.info'].search([('name', '=', id)], limit=1).irs_username
-        password = http.request.env['irs.info'].search([('name', '=', id)], limit=1).irs_password
+        insensitive_name = id.casefold()
+        user = http.request.env['irs.info'].search([('insensitive_name', '=', insensitive_name)], limit=1).irs_username
+        password = http.request.env['irs.info'].search([('insensitive_name', '=', insensitive_name)], limit=1).irs_password
         if password == False:
             return 'ID IRS tidak dapat ditemukan di database odoo. Silakan cek apakah penulisan ID sudah benar.'
         product_code = http.request.env['irs.product.code'].search([('input_code', '=', kode)], limit=1).name
