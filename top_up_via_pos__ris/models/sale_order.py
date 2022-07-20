@@ -31,14 +31,14 @@ class SaleOrder(models.Model):
         name = self.search([('id', '=', so_id)], limit=1).name
         return name
 
-    def add_product_pulsa(self, sn, code):
+    def add_product_pulsa(self, phone, sn, code):
         so_id = self.env.context.get('active_id')
         produk_pulsa = self.env['product.product'].search([('default_code', '=', code)],limit=1).id
         lines_vals = [
             (0, 0, {
                 'product_id': produk_pulsa,
                 'product_uom_qty': 1,
-                'name': sn
+                'name': "Nomor tujuan: "+str(phone)+", SN: "+str(sn)
             })]
 
         self.search([('id', '=', so_id)], limit=1).write({

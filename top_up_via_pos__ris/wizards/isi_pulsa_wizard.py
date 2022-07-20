@@ -59,9 +59,10 @@ class IsiPulsaWizard(models.TransientModel):
                     }
                 }
             else:
+                phone = json_data['tujuan']
                 sn = json_data['sn']
                 code = self.product_code
-                self.env['sale.order'].add_product_pulsa(sn, code)
+                self.env['sale.order'].add_product_pulsa(phone, sn, code)
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
