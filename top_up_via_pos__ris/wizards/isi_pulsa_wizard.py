@@ -23,9 +23,9 @@ class IsiPulsaWizard(models.TransientModel):
 
         payload={}
         headers = {}
-        user = self.env['irs.info'].search([('name', '=', self.name)], limit=1).irs_username
-        
-        password = self.env['irs.info'].search([('name', '=', self.name)], limit=1).irs_password
+        insensitive_name = self.name.casefold()
+        user = self.env['irs.info'].search([('insensitive_name', '=', insensitive_name)], limit=1).irs_username
+        password = self.env['irs.info'].search([('insensitive_name', '=', insensitive_name)], limit=1).irs_password
         if password == False:
             raise ValidationError('ID IRS tidak dapat ditemukan di database odoo. Silakan cek apakah penulisan ID sudah benar.')
         
