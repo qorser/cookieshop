@@ -25,9 +25,19 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             var product_code_input = document.querySelector('[name="product_code"]').value
             var phone_input = document.querySelector('[name="phone"]').value
             var IRS_type_input = document.querySelector('[name="IRS_type"]').value
-            var trx_id = PosComponent.env.pos.get_order().uid
+            // var trx_id = PosComponent.env.pos.get_order().uid
+            var pos_number = PosComponent.env.pos.get_order().uid
+
 
             let order = this.env.pos.get_order()
+            var top_up_list = order.get_serial_number()
+            if (top_up_list){
+                var counter = top_up_list.length+1
+                var trx_id = pos_number+"("+counter+")"
+            }
+            else{
+                var trx_id = pos_number+"(1)"
+            }            
 
             ajax.jsonRpc('/isipulsa', 'call', {
                 'phone': phone_input, 
@@ -46,7 +56,9 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     if (res_json.success === true){
                         alert(res_json.msg+ ". ID Transaksi: " + res_json.reffid)
                         // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
-                        order.set_serial_number(res_json['sn'], res_json['tujuan'])
+                        // order.set_serial_number(res_json['sn'], res_json['tujuan'])
+                        order.set_serial_number('ABC123', '08122334345')
+
                         
                         //MENEMUKAN PRODUK DENGAN KODE YANG DIMASUKKAN
                         var model = 'product.product';
