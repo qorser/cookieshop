@@ -38,10 +38,10 @@ class IsiPulsaWizard(models.TransientModel):
             raise ValidationError('Tidak ada kode produk tersedia di database. Silakan cek apakah penulisan kode produk sudah benar')
 
         if self.trx_type == False:
-            url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)
+            url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=2&idtrx="+str(trx_id)
         else:
             trx_type = self.trx_type
-            url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=1&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
+            url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter=2&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
 
         response = requests.request("GET", url, headers=headers, data=payload)
 
