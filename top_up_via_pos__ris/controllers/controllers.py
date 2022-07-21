@@ -27,10 +27,7 @@ class TopUpViaPosRis(http.Controller):
         if len(trx_type) > 0:
             url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(phone)+"&counter="+str(counter)+"&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
         else:
-            print(trx_id)
             url = "http://103.119.55.59:8080/api/h2h?id="+str(id)+"&pin="+str(pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(phone)+"&counter="+str(counter)+"&idtrx="+str(trx_id)
-
-        print(url)
 
         response = requests.request("GET", url, headers=headers, data=payload)
 
