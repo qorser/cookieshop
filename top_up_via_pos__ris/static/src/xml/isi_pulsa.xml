@@ -41,12 +41,15 @@
                                 <div class="top-up-line">
                                     <input type="number" name="IRS_type" placeholder="Tipe Layanan (Khusus PPOB)" class="top-up-input"/>
                                 </div>
-                                <div class="top-up-line">
-                                    <input type="number" name="counter" placeholder="counter" class="top-up-input"/>
+                                <div class="top-up-line counter">
+                                    <label>Counter
+                                        <br />
+                                        <input type="number" name="counter" placeholder="counter" class="top-up-input counter" value="1"/>
+                                    </label>
                                 </div>
-                                <div class="top-up-line">
+                                <!-- <div class="top-up-line">
                                     <input type="number" name="id_trx" placeholder="ID Trx)" class="top-up-input"/>
-                                </div>                            
+                                </div> -->                            
                             </div>
                         </form>
                     </div>
