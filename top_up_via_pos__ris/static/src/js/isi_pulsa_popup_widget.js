@@ -58,11 +58,10 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     console.log(result)
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
-                    if (res_json.success === false){
+                    if (res_json.success === true){
                         alert(res_json.msg+ ". ID Transaksi: " + res_json.reffid)
                         // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
                         order.set_serial_number(res_json['sn'], res_json['tujuan'])
-                        // order.set_serial_number('ABC123', '08122334345')
 
                         
                         //MENEMUKAN PRODUK DENGAN KODE YANG DIMASUKKAN
