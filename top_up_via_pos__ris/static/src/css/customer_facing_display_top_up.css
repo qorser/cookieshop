@@ -16,5 +16,6 @@
 	color: #b7b7b7;
 }
 .popup.popup-confirm-top-up{
-	height: 550px;
+	/*height: 550px;*/
+	height: 700px;
 }
