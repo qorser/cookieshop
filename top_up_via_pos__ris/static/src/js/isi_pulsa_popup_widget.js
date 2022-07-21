@@ -25,29 +25,29 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             var product_code_input = document.querySelector('[name="product_code"]').value
             var phone_input = document.querySelector('[name="phone"]').value
             var IRS_type_input = document.querySelector('[name="IRS_type"]').value
-            // var trx_id = PosComponent.env.pos.get_order().uid
+            var trx_id = PosComponent.env.pos.get_order().uid
             var pos_number = PosComponent.env.pos.get_order().uid
-            var id_trx = document.querySelector('[name="id_trx"]').value
+            // var id_trx = document.querySelector('[name="id_trx"]').value
             var counter = document.querySelector('[name="counter"]').value
 
 
-            // let order = this.env.pos.get_order()
-            // var top_up_list = order.get_serial_number()
-            // if (top_up_list){
-            //     var counter = top_up_list.length+1
-            //     var trx_id = pos_number+"("+counter+")"
-            // }
-            // else{
-            //     var trx_id = pos_number+"(1)"
-            // }            
+            let order = this.env.pos.get_order()
+            var top_up_list = order.get_serial_number()
+            if (top_up_list){
+                var counter = top_up_list.length+1
+                var trx_id = pos_number+"("+counter+")"
+            }
+            else{
+                var trx_id = pos_number+"(1)"
+            }            
 
             ajax.jsonRpc('/isipulsa', 'call', {
                 'phone': phone_input, 
                 'id' : IRS_id_input,
                 'pin' : IRS_pin_input,
                 'kode' : product_code_input,
-                // 'trx_id': trx_id, 
-                'trx_id': id_trx, 
+                'trx_id': trx_id, 
+                // 'trx_id': id_trx, 
                 'counter': counter,
                 'trx_type' : IRS_type_input,
 
@@ -55,6 +55,7 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
             .then(function (result) { 
                 setTimeout(function(){ 
                     var res = JSON.stringify(result)
+                    console.log(result)
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
                     if (res_json.success === true){
