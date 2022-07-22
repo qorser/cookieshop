@@ -9,6 +9,8 @@ from odoo.addons.payment import utils as payment_utils
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    jumlah_pulsa = fields.Char()
    
     def action_topup(self):
         view = self.env.ref('top_up_via_pos__ris.isi_pulsa_wizard')
@@ -28,7 +30,14 @@ class SaleOrder(models.Model):
 
     def get_active_name(self):
         so_id = self.env.context.get('active_id')
-        name = self.search([('id', '=', so_id)], limit=1).name
+        SO = self.search([('id', '=', so_id)], limit=1)
+        name = SO.name
+        pulsa = SO.jumlah_pulsa
+        if pulsa == False:
+            jumlah_pulsa = 1
+        else:
+           jumlah_pulsa = int(pulsa) + 1
+        name = str(name)+"("+str(jumlah_pulsa)+")"
         return name
 
     def add_product_pulsa(self, phone, sn, code):
@@ -41,6 +50,13 @@ class SaleOrder(models.Model):
                 'name': "Nomor tujuan: "+str(phone)+", SN: "+str(sn)
             })]
 
-        self.search([('id', '=', so_id)], limit=1).write({
+        SO = self.search([('id', '=', so_id)], limit=1)
+        pulsa = SO.jumlah_pulsa
+        if pulsa == False:
+            jumlah_pulsa = 1
+        else:
+            jumlah_pulsa = int(pulsa) + 1
+        SO.write({
             'order_line': lines_vals,
+            'jumlah_pulsa': jumlah_pulsa
         })
