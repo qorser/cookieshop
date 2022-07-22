@@ -5,3 +5,5 @@ access_irs_info_user,access_irs_info_user,model_irs_info,base.group_user,1,1,1,1
 access_irs_product_code_user,access_irs_product_code_user,model_irs_product_code,base.group_user,1,1,1,1
 
 access_isi_pulsa_wizard_user,access_isi_pulsa_wizard_user,model_isi_pulsa_wizard,base.group_user,1,1,1,1
+
+access_irs_trx_user,access_irs_trx_user,model_irs_trx,base.group_user,1,1,1,1

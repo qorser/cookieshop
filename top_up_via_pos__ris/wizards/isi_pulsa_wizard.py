@@ -4,6 +4,7 @@ from odoo import fields, models
 import json
 from odoo.exceptions import UserError, ValidationError
 import requests
+from datetime import datetime, timedelta
 
 class IsiPulsaWizard(models.TransientModel):
     _name = "isi.pulsa.wizard"
@@ -20,6 +21,17 @@ class IsiPulsaWizard(models.TransientModel):
 
     def isi_pulsa(self):
         trx_id = self.env['sale.order'].get_active_name()
+        same_trx = self.env['irs.trx'].search([('name', '=', self.product_code),('phone', '=', self.phone_number),('counter', '=', self.counter)], limit=1)
+        if same_trx:
+            delta = datetime.now()+timedelta(hours=7) - same_trx.trx_datetime
+            if delta.seconds/3600 < 6:
+                raise ValidationError('Transaksi serupa dengan counter: '+str(self.counter)+' sudah pernah dilakukan kurang dari 6 jam. ganti nilai counter jika ingin mengisi pulsa kembali.')
+            else:
+                new = False
+        else:
+            new = True
+
+
         payload={}
         headers = {}
         insensitive_name = self.name.casefold()
@@ -48,6 +60,19 @@ class IsiPulsaWizard(models.TransientModel):
 
         if json_data:
             if json_data['rc'] == '0068' or json_data['rc'] == '68' or json_data['rc'] == '0027' or json_data['rc'] == '1':
+
+                if new == True:
+                    self.env['irs.trx'].create({
+                        'name' : self.product_code,
+                        'phone' : self.phone_number,
+                        'trx_datetime': datetime.now()+timedelta(hours=7),
+                        'counter': self.counter
+                        })
+                else:
+                    same_trx.write({
+                        'trx_datetime': datetime.now()+timedelta(hours=7),
+                        })
+
                 phone = json_data['tujuan']
                 if 'sn' in json_data:
                     sn = json_data['sn']
