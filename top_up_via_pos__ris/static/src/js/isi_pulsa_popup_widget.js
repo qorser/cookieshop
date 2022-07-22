@@ -58,30 +58,27 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     console.log(result)
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
-                    if (res_json.success === true){
-                        if (res_json.rc === '0068' || res_json.rc === '68' || res_json.rc === '0027' || res_json.rc === '1'){
-                            console.log('RC')
-                            console.log(res_json.rc)
+                    if (res_json.rc === '0068' || res_json.rc === '68' || res_json.rc === '0027' || res_json.rc === '1'){
+                        console.log('RC')
+                        console.log(res_json.rc)
+                        alert(res_json.msg+ ". ID Transaksi: " + res_json.reffid)
+                        // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
+                        order.set_serial_number(res_json['sn'], res_json['tujuan'])
 
-                            alert(res_json.msg+ ". ID Transaksi: " + res_json.reffid)
-                            // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
-                            order.set_serial_number(res_json['sn'], res_json['tujuan'])
-
-                            
-                            //MENEMUKAN PRODUK DENGAN KODE YANG DIMASUKKAN
-                            var model = 'product.product';
-                            var domain = [['default_code', '=', product_code_input]];
-                            var fields = [];
-                            rpc.query({
-                                model: model,
-                                method: 'search_read',
-                                args: [domain, fields],
-                            }).then(function (data) {
-                                const product = PosComponent.env.pos.db.get_product_by_id(data[0].id);
-                                const added_product = order.add_product(product);
-                                NumberBuffer.reset();
-                            });
-                        }
+                        
+                        //MENEMUKAN PRODUK DENGAN KODE YANG DIMASUKKAN
+                        var model = 'product.product';
+                        var domain = [['default_code', '=', product_code_input]];
+                        var fields = [];
+                        rpc.query({
+                            model: model,
+                            method: 'search_read',
+                            args: [domain, fields],
+                        }).then(function (data) {
+                            const product = PosComponent.env.pos.db.get_product_by_id(data[0].id);
+                            const added_product = order.add_product(product);
+                            NumberBuffer.reset();
+                        });
                     }
                     else{
                         alert("Pengisian gagal. " + res_json.msg+ ". ID Transaksi: " + res_json.reffid)
