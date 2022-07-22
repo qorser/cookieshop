@@ -60,7 +60,7 @@ class IsiPulsaWizard(models.TransientModel):
                     'tag': 'display_notification',
                     'params': {
                         'type': 'warning',
-                        'message': (str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])),
+                        'message': (str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+" "+str(json_data)),
                         'sticky' : True
                     }
                 }
@@ -70,7 +70,7 @@ class IsiPulsaWizard(models.TransientModel):
                     'tag': 'display_notification',
                     'params': {
                         'type': 'warning',
-                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])),
+                        'message': ("Pengisian gagal. " + str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])+" "+str(json_data)),
                         'sticky' : True
                     }
                 }
