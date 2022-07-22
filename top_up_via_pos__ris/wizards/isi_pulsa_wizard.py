@@ -25,7 +25,7 @@ class IsiPulsaWizard(models.TransientModel):
         if same_trx:
             delta = datetime.now()+timedelta(hours=7) - same_trx.trx_datetime
             if delta.seconds/3600 < 6:
-                raise ValidationError('Transaksi serupa dengan counter: '+str(self.counter)+' sudah pernah dilakukan kurang dari 6 jam. ganti nilai counter jika ingin mengisi pulsa kembali.')
+                raise ValidationError('Transaksi serupa dengan counter: '+str(self.counter)+' sudah pernah dilakukan kurang dari 6 jam. ganti nilai counter jika ingin mengisi pulsa kembali. Transaksi terakhir: '+str(same_trx.trx_datetime))
             else:
                 new = False
         else:
