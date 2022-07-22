@@ -30,11 +30,11 @@
                     <field name="trx_type" style="display: flex;
     width: 200px;" />
                 </div>
-                <!-- <div style="display:flex">
+                <div style="display:flex">
                     <label for="counter" style="margin: 0 50px 0 0; width: 100px"/>
                     <field name="counter" style="display: flex;
     width: 200px;" />
-                </div>   -->             
+                </div>               
                 <footer>
                     <button string='Submit' name="isi_pulsa" type="object" class="btn-primary"/>
                 </footer>
