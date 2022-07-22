@@ -20,8 +20,6 @@ class IsiPulsaWizard(models.TransientModel):
 
     def isi_pulsa(self):
         trx_id = self.env['sale.order'].get_active_name()
-        # trx_id = "0"+str(trx_id)
-
         payload={}
         headers = {}
         insensitive_name = self.name.casefold()
@@ -44,8 +42,6 @@ class IsiPulsaWizard(models.TransientModel):
             trx_type = self.trx_type
             url = "http://103.119.55.59:8080/api/h2h?id="+str(self.name)+"&pin="+str(self.irs_pin)+"&user="+str(user)+"&pass="+str(password)+"&kodeproduk="+str(product_code)+"&tujuan="+str(self.phone_number)+"&counter="+str(self.counter)+"&idtrx="+str(trx_id)+"&jenis="+str(trx_type)
 
-        print(url)
-
         response = requests.request("GET", url, headers=headers, data=payload)
 
         json_data = json.loads(response.text)
@@ -53,7 +49,10 @@ class IsiPulsaWizard(models.TransientModel):
         if json_data:
             if json_data['rc'] == '0068' or json_data['rc'] == '68' or json_data['rc'] == '0027' or json_data['rc'] == '1':
                 phone = json_data['tujuan']
-                sn = json_data['sn']
+                if 'sn' in json_data:
+                    sn = json_data['sn']
+                else: 
+                    sn = '-'
                 code = self.product_code
                 self.env['sale.order'].add_product_pulsa(phone, sn, code)
                 return {
@@ -66,7 +65,6 @@ class IsiPulsaWizard(models.TransientModel):
                     }
                 }
             else:
-            # if json_data['success'] == False:
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
@@ -76,17 +74,3 @@ class IsiPulsaWizard(models.TransientModel):
                         'sticky' : True
                     }
                 }
-            # else:
-            #     phone = json_data['tujuan']
-            #     sn = json_data['sn']
-            #     code = self.product_code
-            #     self.env['sale.order'].add_product_pulsa(phone, sn, code)
-            #     return {
-            #         'type': 'ir.actions.client',
-            #         'tag': 'display_notification',
-            #         'params': {
-            #             'type': 'warning',
-            #             'message': (str(json_data['msg']) + ". ID Transaksi: " + str(json_data['reffid'])),
-            #             'sticky' : True
-            #         }
-            #     }
