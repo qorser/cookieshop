@@ -85,6 +85,8 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     }
                     else{
                         alert("Pengisian gagal. " + res_json.msg+ ". ID Transaksi: " + res_json.reffid)
+                        console.log('RC')
+                        console.log(res_json.rc)
                     }
                 }, 3000);
                
