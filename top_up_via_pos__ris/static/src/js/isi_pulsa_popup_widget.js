@@ -59,8 +59,6 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     //MENAMBAHKAN PRODUK SAAT BERHASIL MENGISI
                     var res_json = JSON.parse(res)
                     if (res_json.rc === '0068' || res_json.rc === '68' || res_json.rc === '0027' || res_json.rc === '1'){
-                        console.log('RC')
-                        console.log(res_json.rc)
                         alert(res_json.msg+ ". ID Transaksi: " + res_json.reffid)
                         // DI SINI UNTUK MENAMBAHKAN NOMOR HP DAN NOMOR SN
                         order.set_serial_number(res_json['sn'], res_json['tujuan'])
@@ -82,8 +80,6 @@ odoo.define('top_up_via_pos__ris.PosIsiPulsaPopupWidget', function(require) {
                     }
                     else{
                         alert("Pengisian gagal. " + res_json.msg+ ". ID Transaksi: " + res_json.reffid)
-                        console.log('RC')
-                        console.log(res_json.rc)
                     }
                 }, 3000);
                
